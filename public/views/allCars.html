@@ -1,0 +1,79 @@
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- jQuery + Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+<link rel="stylesheet" href="/css/main.css"/>
+    <style>
+      .car-card {
+        background-color: #F1F8E9;
+        border: 1px solid #DCEDC8;
+        border-radius: 8px;      
+        margin-bottom: 30px;
+        margin-top: 60px;
+        transition: transform 0.2s;
+        width: 100%;
+        height: 450px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .car-card:hover {
+        transform: scale(1.02);
+      }
+
+      .car-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      .car-card .car-info {
+        padding: 30px;
+        flex-grow: 1;
+        text-align: center;
+      }
+
+      .car-card h5 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .car-card p {
+        margin: 20px 0;
+        font-size: 28px;
+      }
+    </style>
+
+       <div class="container allCars" ng-controller="AllCarController">
+  <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="car in cars">
+      <div class="car-card" ng-click="viewCar(car)">
+        <img ng-src="{{ car.img }}" />
+        <div class="car-info">
+          <h5>{{ car.brand }} {{ car.model }}</h5>
+          <p>  {{ car.price | currency: '₺' }}</p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+  </body>
+</html>

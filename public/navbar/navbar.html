@@ -1,0 +1,22 @@
+<nav class="container-fluid navbar">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Araç Kirala</a>
+  </div>
+  <ul class="nav navbar-nav navbar-right">
+    <li ng-class="{ active: isActiveNav('home') }">
+      <a href="" ng-click="setActiveNav('home')">Home</a>
+    </li>
+    <li ng-class="{ active: isActiveNav('allCars') }">
+      <a href="" ng-click="setActiveNav('allCars')">Araçlar</a>
+    </li>
+    <li ng-class="{ active: isActiveNav('dashboard') }">
+      <a href="" ng-click="setActiveNav('dashboard')">Dashboard</a>
+    </li>
+    <li ng-class="{ active: isActiveNav('login') }">
+      <a href="" ng-if="!isLoggedIn" ng-click="setActiveNav('login')"
+        >Giriş / Kayıt</a
+      >
+      <a href="" ng-if="isLoggedIn" ng-click="logout()">Çıkış Yap</a>
+    </li>
+  </ul>
+</nav>

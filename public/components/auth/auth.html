@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="/css/style.css" />
+<div class="overlay">
+  <!-- Giriş formu -->
+  <div class="container" ng-if="popupType === 'login'">
+    <span class="close-btn" ng-click="setActiveNav('home')">×</span>
+    <h2>Giriş Yap</h2>
+    <form ng-submit="login()">
+      <input
+        type="email"
+        ng-model="loginData.email"
+        placeholder="E-posta"
+        class="form-control"
+        required
+      /><br />
+      <input
+        type="password"
+        ng-model="loginData.password"
+        placeholder="Şifre"
+        class="form-control"
+        required
+      /><br />
+      <button type="submit" class="btn btn-primary">Giriş</button>
+    </form>
+    <hr />
+    <p>
+      Hesabınız yok mu?
+      <a href="" ng-click="switchPopup('signup', $event)">Kayıt Ol</a>
+    </p>
+  </div>
+
+  <!-- Kayıt formu -->
+  <div class="container" ng-if="popupType === 'signup'">
+    <span class="close-btn" ng-click="setActiveNav('home')">×</span>
+    <h2>Kayıt Ol</h2>
+    <form ng-submit="register()">
+      <input
+        type="text"
+        ng-model="customer.name"
+        placeholder="Ad"
+        class="form-control"
+        required
+      /><br />
+      <input
+        type="text"
+        ng-model="customer.surname"
+        placeholder="Soyad"
+        class="form-control"
+        required
+      /><br />
+      <input
+        type="email"
+        ng-model="customer.email"
+        placeholder="E-posta"
+        class="form-control"
+        required
+      /><br />
+      <input
+        type="password"
+        ng-model="customer.password"
+        placeholder="Şifre"
+        class="form-control"
+        required
+      /><br />
+      <button type="submit" class="btn btn-success">Kayıt Ol</button>
+    </form>
+    <hr />
+    <p>
+      Hesabınız var mı?
+      <a href="" ng-click="switchPopup('login', $event)">Giriş Yap</a>
+    </p>
+  </div>
+</div>

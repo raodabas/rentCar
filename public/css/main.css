@@ -1,0 +1,20 @@
+body {
+  background-color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+.title-heading {
+  font-weight: 800;
+  text-align: left;
+  font-family: "Roboto:800", sans-serif;
+  color: #424242;
+  margin-top: 80px;
+  padding-left: 260px;
+}
+
+.container {
+  background-color: #ffffff;
+}

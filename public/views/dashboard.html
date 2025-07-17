@@ -1,0 +1,46 @@
+<div ng-controller="RentedCarsController">
+  <h2 style="text-align: center">Kiraladığın Araçlar</h2>
+
+  <div ng-if="rentedCars.length === 0" class="alert alert-warning text-center">
+    Henüz kiraladığın bir araç bulunmuyor.
+  </div>
+
+  <div
+    class="car-card card"
+    style="
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      margin-top: 30px;
+      padding: 15px;
+      border-bottom: 1px solid #dcedc8;
+    "
+    ng-repeat="car in rentedCars"
+  >
+    <div style="flex: 0 0 250px; margin-left: 80px">
+      <img
+        ng-src="{{car.carId.img}}"
+        alt="Araç Resmi"
+        style="
+          width: 100%;
+          height: 200px;
+          width: 300px;
+          object-fit: cover;
+          border-radius: 8px;
+        "
+      />
+    </div>
+
+    
+    <div style="flex: 1; text-align: left; padding-left: 85px">
+      <h4>{{car.carId.brand}} {{car.carId.model}}</h4>
+      <p><strong>Plaka:</strong> {{car.carId.plate}}</p>
+      <p><strong>Lokasyon:</strong> {{car.carId.location}}</p>
+      <p><strong>Fiyat:</strong> {{car.totalPrice}} ₺</p>
+      <p>
+        <strong>Tarih:</strong> {{car.startDate | date:'dd.MM.yyyy'}} -
+        {{car.endDate | date:'dd.MM.yyyy'}}
+      </p>
+    </div>
+  </div>
+</div>

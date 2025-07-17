@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="carApp">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Angular Material CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.12/angular-material.min.css"
+    />
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-aria.min.js"></script>
+
+    <!-- Angular Material JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.12/angular-material.min.js"></script>
+
+    <style>
+      .md-block {
+        width: 200px;
+      }
+    </style>
+
+    
+    <script>
+      angular
+        .module("carApp", ["ngMaterial"])
+        .controller("AddCarController", function ($scope, $http) {
+          $scope.car = {};
+
+          // Kategori ve şanzıman tipleri
+          $scope.categories = [
+            { abbrev: "Sedan" },
+            { abbrev: "Hatchback" },
+            { abbrev: "SUV" },
+            { abbrev: "Minivan" },
+          ];
+
+          $scope.transmissionTypes = [
+            { abbrev: "Otomatik" },
+            { abbrev: "Manuel" },
+            { abbrev: "Yarı Otomatik" },
+          ];
+
+          $scope.addCar = function () {
+            console.log("Form verisi:", $scope.car);
+
+            $http
+              .post("/api/cars/createCar", $scope.car)
+              .then(function (response) {
+                console.log("Kayıt başarılı:", response);
+                $scope.success = "Araç başarıyla eklendi!";
+                $scope.error = "";
+                $scope.car = {}; 
+              })
+              .catch(function (error) {
+                console.error("Kayıt başarısız:", error);
+                $scope.error = error.data.message || "Bir hata oluştu.";
+                $scope.success = "";
+              });
+          };
+        });
+    </script>
+  </head>
+
+  <body>
+    <div ng-controller="AddCarController" ng-cloak layout-padding>
+      <md-content class="md-padding" layout="column">
+        <form name="addCarForm" ng-submit="addCar()">
+          <!-- Satırlar -->
+          <div layout="row" layout-wrap>
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Marka</label>
+              <input type="text" ng-model="car.brand" required />
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Model</label>
+              <input type="text" ng-model="car.model" required />
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Plaka</label>
+              <input type="text" ng-model="car.plate" required />
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Yıl</label>
+              <input type="number" ng-model="car.year" required />
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Fiyat</label>
+              <input type="number" ng-model="car.price" required />
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Kategori</label>
+              <input type="text" ng-model="car.category" required />
+              <p style="font-size: 12px; color: gray; margin: 4px 0 0 0">
+                Sedan, Hatchback, SUV, Minivan
+              </p>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Şanzıman</label>
+              <input type="text" ng-model="car.transmission" required />
+              <p style="font-size: 12px; color: gray; margin: 4px 0 0 0">
+                Otomatik, Manuel, Yarı Otomatik
+              </p>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Renk</label>
+              <input type="text" ng-model="car.color" required />
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Konum</label>
+              <input type="text" ng-model="car.location" required />
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="30" flex="100">
+              <label>Resim URL</label>
+              <input type="text" ng-model="car.img" required />
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="60" flex="100">
+              <label>Açıklama</label>
+              <input type="text" ng-model="car.description" required />
+            </md-input-container>
+          </div>
+
+         
+          <div ng-if="success" style="color: green; margin-top: 10px">
+            {{success}}
+          </div>
+          <div ng-if="error" style="color: red; margin-top: 10px">
+            {{error}}
+          </div>
+
+          <div
+            layout="row"
+            layout-align="end center"
+            style="margin-top: 20px; padding-right: 40px"
+          >
+            <md-button type="submit" class="md-raised md-primary">
+              Araç Ekle
+            </md-button>
+          </div>
+        </form>
+      </md-content>
+    </div>
+  </body>
+</html>
