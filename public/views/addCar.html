@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="carApp">
-  <head>
-    <meta charset="UTF-8" />
 
-    <!-- Angular Material CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.12/angular-material.min.css"
-    />
-
-    <!-- AngularJS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-aria.min.js"></script>
-
-    <!-- Angular Material JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.12/angular-material.min.js"></script>
-
-    <style>
-      .md-block {
-        width: 200px;
-      }
-    </style>
-
-    
     <script>
       angular
         .module("carApp", ["ngMaterial"])
@@ -53,7 +28,7 @@
                 console.log("Kayıt başarılı:", response);
                 $scope.success = "Araç başarıyla eklendi!";
                 $scope.error = "";
-                $scope.car = {}; 
+                $scope.car = {};
               })
               .catch(function (error) {
                 console.error("Kayıt başarısız:", error);
@@ -63,13 +38,12 @@
           };
         });
     </script>
-  </head>
-
+  
   <body>
     <div ng-controller="AddCarController" ng-cloak layout-padding>
       <md-content class="md-padding" layout="column">
         <form name="addCarForm" ng-submit="addCar()">
-          <!-- Satırlar -->
+          
           <div layout="row" layout-wrap>
             <md-input-container class="md-block" flex-gt-sm="30" flex="100">
               <label>Marka</label>
@@ -132,7 +106,6 @@
             </md-input-container>
           </div>
 
-         
           <div ng-if="success" style="color: green; margin-top: 10px">
             {{success}}
           </div>

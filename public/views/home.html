@@ -1,96 +1,86 @@
-<html lang="en" ng-app="carApp">
-  <!-- AngularJS kütüphaneleri -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.2/angular-material.min.js"></script>
+<style>
+  .home {
+    height: 80vh;
+    width: 100%;
+    background-image: url("/images/home.jpg");
+    background-size: cover;
+    background-position: center;
+    padding-top: 100px;
+  }
 
- 
-  <script src="/js/app.js"></script>
-  <script src="/js/rentController.js"></script>
+  .car-box {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+  }
 
-  <style>
-    .home {
-      height: 80vh;
-      width: 100%;
-      background-image: url("/images/home.jpg");
-      background-size: cover;
-      background-position: center;
-    }
-  </style>
+  .car-image {
+    width: 100px;
+    height: auto;
+    margin-right: 15px;
+  }
+  h3 {
+    padding-top: 10px;
+    text-align: left;
+    color: #757575;
+  }
+  .filteredCars {
+    padding-top: 20px;
+  }
+</style>
+
+<div ng-controller="RentController as rentCtrl">
+  <!-- Ana Ekran -->
   <div class="container home">
-    <h2 class="md-display-2 title-heading">aracını kirala</h2>
-    <br />
-    <div
-      ng-cloak
-      ng-controller="rentController as ctrl"
-      layout="row"
-      layout-align="center center"
-      layout-padding
-      style="gap: 20px; flex-wrap: wrap"
-    >
-      <!-- Alış Tarihi -->
-      <div layout="row" layout-align="center center" style="gap: 8px">
-        <h4 style="margin: 0">Alış Tarihi</h4>
-        <md-datepicker
-          ng-model="ctrl.startDate"
-          md-placeholder="Tarih seç"
-        ></md-datepicker>
+    <div class="row text-center">
+      <h2 style="color: #43a047">RentCar ile stediğin Arabayı Bulalım</h2>
+
+      <div class="col-md-4 col-md-offset-2">
+        <label style="color: white">Başlangıç Tarihi:</label>
+        <input type="date" class="form-control" ng-model="rentCtrl.startDate" />
       </div>
 
-      
-      <div style="font-size: 24px; margin: 0 10px"></div>
-
-      <!-- Bırakış Tarihi -->
-      <div layout="row" layout-align="center center" style="gap: 8px">
-        <h4 style="margin: 0">Bırakış Tarihi</h4>
-        <md-datepicker
-          ng-model="ctrl.endDate"
-          md-placeholder="Tarih seç"
-        ></md-datepicker>
+      <div class="col-md-4">
+        <label style="color: white">Bitiş Tarihi:</label>
+        <input type="date" class="form-control" ng-model="rentCtrl.endDate" />
       </div>
 
-      
-      <div>
-        <md-button
-          class="md-raised md-primary"
-          ng-click="console.log('butona tıklandı')"
-        >
-          ARAÇ BUL
-        </md-button>
+      <div class="col-md-12" style="margin-top: 20px">
+        <button class="btn btn-success" ng-click="rentCtrl.getAvailableCars()">
+          Araçları Göster
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- Filtrelenmiş Araçlar -->
+  <!-- Filtrelenen Araçlar -->
   <div
-    layout="row"
-    layout-wrap
-    layout-align="center start"
-    style="margin-top: 40px; gap: 20px"
+    class="container"
+    ng-if="rentCtrl.filteredCars.length > 0"
+    style="margin-top: 40px"
   >
-    <div
-      class="car-card"
-      ng-repeat="car in ctrl.filteredCars"
-      ng-click="ctrl.viewCar(car)"
-      style="
-        cursor: pointer;
-        width: 250px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-      "
-    >
-      <img
-        ng-src="{{ car.image }}"
-        alt="Araç Resmi"
-        style="
-          width: 100%;
-          height: 150px;
-          object-fit: cover;
-          border-radius: 8px;
-        "
-      />
-      <h4>{{ car.brand }} {{ car.model }}</h4>
-      <p>Fiyat: {{ car.price }} ₺</p>
+    <h3>Seçtiğin tarihlerde müsait olan araçlar:</h3>
+    <div class="row filteredCars">
+      <div class="col-md-4" ng-repeat="car in rentCtrl.filteredCars">
+        <div class="car-box">
+          <div class="media">
+            <div class="media-left">
+              <img ng-src="{{car.img}}" class="car-image" alt="Araç Görseli" />
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{car.brand}} {{car.model}}</h4>
+
+              <p>Günlük Fiyat: ₺ {{car.price}}</p>
+
+              <button class="btn btn-default" ng-click="rentCtrl.rentCar(car)">
+                Aracı kirala →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</html>
+</div>

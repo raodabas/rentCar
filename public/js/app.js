@@ -11,7 +11,7 @@ app.controller("NavController", function ($scope, $http, carService) {
 
     switch (tab) {
       case "home":
-        $scope.currentView = "views/home.html";
+        $scope.currentView = "/views/home.html";
         break;
       case "allCars":
         $scope.currentView = "/views/allCars.html";
@@ -60,7 +60,7 @@ app.controller("NavController", function ($scope, $http, carService) {
     $http.post("/api/customer/login", $scope.loginData).then(
       function (response) {
         alert("Giriş başarılı!");
-        console.log("YANIT:", response.data); // ekle
+        console.log("YANIT:", response.data);
         console.log("TOKEN:", response.data.token);
         $scope.isLoggedIn = true;
         localStorage.setItem("token", response.data.token);
@@ -102,5 +102,39 @@ app.controller("NavController", function ($scope, $http, carService) {
     carService.setCarId(car._id);
     $scope.selectedCar = car;
     $scope.currentView = "/views/carDetail.html";
+  };
+});
+
+app.controller("RentController", function ($http, $scope, carService) {
+  const ctrl = this;
+
+  ctrl.startDate = null;
+  ctrl.endDate = null;
+  ctrl.filteredCars = [];
+
+  ctrl.getAvailableCars = function () {
+    if (!ctrl.startDate || !ctrl.endDate) {
+      alert("Lütfen tarihleri seçiniz.");
+      return;
+    }
+
+    const startISO = new Date(ctrl.startDate).toISOString();
+    const endISO = new Date(ctrl.endDate).toISOString();
+
+    const url = `http://localhost:8000/api/rentcar/available?start=${startISO}&end=${endISO}`;
+
+    $http
+      .get(url)
+      .then(function (response) {
+        ctrl.filteredCars = response.data;
+      })
+      .catch(function (error) {
+        console.error("API hatası:", error);
+        alert("Araçlar getirilemedi.");
+      });
+  };
+
+  ctrl.rentCar = function (car) {
+    $scope.viewCar(car);
   };
 });

@@ -36,3 +36,4 @@ app.use("/api/cars", carRoute);
 app.use("/api/rentcar", rentcarRoute);
 
 app.use(express.static("public"));
+

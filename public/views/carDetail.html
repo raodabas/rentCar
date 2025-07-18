@@ -1,37 +1,6 @@
 <div class="container" ng-controller="carDetailController" ng-if="!error">
     <p ng-if="error" class="alert alert-danger">{{error}}</p>
 
-
-  <script src="/js/carDetail.js"></script>
-  <!-- Bootstrap CSS -->
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-  />
-<link rel="stylesheet" href="/css/carDetail.css"/>
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-    rel="stylesheet"
-  />
-  <!-- AngularJS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-
-  <!-- Angular Animate & Aria (Material için gerekli) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-aria.min.js"></script>
-
-  <!-- Angular Material -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.2.2/angular-material.min.css"
-  />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.2.2/angular-material.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-
   <div
     class="container"
     ng-controller="carDetailController"
@@ -111,7 +80,7 @@
     
     <div class="row" style="margin-top: 30px">
       <div class="col-sm-6">
-        <!-- Marka & Model -->
+        
         <div class="row">
           <div class="col-xs-6">
             <p style="font-size: 18px">
@@ -123,7 +92,7 @@
           </div>
         </div>
 
-        <!-- Kategori & Yıl -->
+        
         <div class="row">
           <div class="col-xs-6">
             <p>{{selectedCar.category}}</p>

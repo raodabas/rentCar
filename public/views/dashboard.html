@@ -1,9 +1,15 @@
 <div ng-controller="RentedCarsController">
   <h2 style="text-align: center">Kiraladığın Araçlar</h2>
 
-  <div ng-if="rentedCars.length === 0" class="alert alert-warning text-center">
+  <div
+    ng-if="rentedCars.length === 0"
+    class="alert alert-warning text-center"
+    style="margin-top: 40px"
+  >
     Henüz kiraladığın bir araç bulunmuyor.
   </div>
+
+  <style></style>
 
   <div
     class="car-card card"
@@ -31,7 +37,6 @@
       />
     </div>
 
-    
     <div style="flex: 1; text-align: left; padding-left: 85px">
       <h4>{{car.carId.brand}} {{car.carId.model}}</h4>
       <p><strong>Plaka:</strong> {{car.carId.plate}}</p>

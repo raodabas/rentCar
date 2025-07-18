@@ -47,7 +47,14 @@
     <script src="/js/allCars.js"></script>
     <script src="/js/carDetail.js"></script>
     <script src="/js/dashboard.js"></script>
-    <script src="/js/rentController.js"></script>
+  
+    <script>
+      const app = angular.module("carApp", []);
+
+      app.controller("NavController", function ($scope) {
+        $scope.currentView = "/views/home.html";
+      });
+    </script>
   </head>
 
   <body ng-app="carApp" ng-cloak ng-controller="NavController">
