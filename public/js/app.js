@@ -56,6 +56,16 @@ app.controller("NavController", function ($scope, $http, carService) {
     $scope.popupType = type;
   };
 
+  $scope.goBack = function () {
+    
+    if ($scope.previousTab) {
+      $scope.setActiveNav($scope.previousTab);
+      $scope.previousTab = null; 
+    } else {
+      $scope.setActiveNav("home"); 
+    }
+  };
+
   $scope.login = function () {
     $http.post("/api/customer/login", $scope.loginData).then(
       function (response) {
@@ -97,10 +107,11 @@ app.controller("NavController", function ($scope, $http, carService) {
     $scope.isLoggedIn = true;
   }
   $scope.selectedCar = null;
-  $scope.viewCar = function (car) {
+  $scope.viewCar = function (car,fromTab) {
     console.log("Seçilen araç:", car);
     carService.setCarId(car._id);
     $scope.selectedCar = car;
+    $scope.previousTab = fromTab;
     $scope.currentView = "/views/carDetail.html";
   };
 });
@@ -111,6 +122,7 @@ app.controller("RentController", function ($http, $scope, carService) {
   ctrl.startDate = null;
   ctrl.endDate = null;
   ctrl.filteredCars = [];
+  
 
   ctrl.getAvailableCars = function () {
     if (!ctrl.startDate || !ctrl.endDate) {

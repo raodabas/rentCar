@@ -62,7 +62,7 @@
        <div class="container allCars" ng-controller="AllCarController">
   <div class="row">
     <div class="col-sm-6 col-md-4" ng-repeat="car in cars">
-      <div class="car-card" ng-click="viewCar(car)">
+      <div class="car-card" ng-click="viewCar(car, 'allCars')">
         <img ng-src="{{ car.img }}" />
         <div class="car-info">
           <h5>{{ car.brand }} {{ car.model }}</h5>

@@ -35,7 +35,7 @@
   <!-- Ana Ekran -->
   <div class="container home">
     <div class="row text-center">
-      <h2 style="color: #43a047">RentCar ile stediğin Arabayı Bulalım</h2>
+      <h2 style="color: #43a047">RentCar ile İstediğin Arabayı Bulalım</h2>
 
       <div class="col-md-4 col-md-offset-2">
         <label style="color: white">Başlangıç Tarihi:</label>
@@ -74,7 +74,10 @@
 
               <p>Günlük Fiyat: ₺ {{car.price}}</p>
 
-              <button class="btn btn-default" ng-click="rentCtrl.rentCar(car)">
+              <button
+                class="btn btn-default"
+                ng-click="rentCtrl.rentCar(car,'home')"
+              >
                 Aracı kirala →
               </button>
             </div>

@@ -44,8 +44,6 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Şifre hatalı." });
     }
 
-    // Giriş başarılı
-
     const token = jwt.sign(
       {
         customerId: customer._id,

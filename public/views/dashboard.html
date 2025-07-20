@@ -46,6 +46,14 @@
         <strong>Tarih:</strong> {{car.startDate | date:'dd.MM.yyyy'}} -
         {{car.endDate | date:'dd.MM.yyyy'}}
       </p>
+
+      <button
+        class="btn btn-danger"
+        style="margin-top: 15px"
+        ng-click="cancelRental(car._id)"
+      >
+        Kiralamayı İptal Et
+      </button>
     </div>
   </div>
 </div>
